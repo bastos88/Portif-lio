@@ -2,6 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ExternalLink } from "lucide-react";
 import travelgramImg from "@/assets/project-travelgram.png";
+import oldbladeImg from "@/assets/oldblade.png";
 
 const projects = [
   {
@@ -11,6 +12,14 @@ const projects = [
     stack: ["HTML", "CSS"],
     image: travelgramImg,
     url: "https://travelgram-two-kappa.vercel.app/",
+  },
+   {
+    title: "OldBlade",
+    description:
+      "OldBlade is a web application designed to make it easier to book haircuts at barbershops or salons. The focus is on a simple, responsive, and functional user experience, with a modern and intuitive interface.",
+    stack: ["HTML", "CSS", "JavaScript","JSON Server"],
+    image: oldbladeImg,
+    url: "https://old-blade.vercel.app/",
   },
 ];
 
