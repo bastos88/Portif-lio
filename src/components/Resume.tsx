@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Download, FileText } from "lucide-react";
+import resumePdf from "../assets/Leonardo Bastos - Web developer.pdf";
 
 const Resume = () => {
   const ref = useRef(null);
@@ -37,7 +38,7 @@ const Resume = () => {
           className="inline-flex flex-col sm:flex-row gap-4 items-center justify-center"
         >
           <a
-            href="/resume.pdf"
+            href={resumePdf}
             download
             className="group flex items-center gap-3 px-8 py-4 rounded-lg bg-primary text-primary-foreground font-display font-medium tracking-wide transition-all duration-300 hover:shadow-[0_0_30px_hsl(217_91%_60%/0.3)] hover:-translate-y-0.5"
           >
@@ -46,7 +47,7 @@ const Resume = () => {
           </a>
 
           <a
-            href="/resume.pdf"
+            href={resumePdf}
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-3 px-8 py-4 rounded-lg glow-border text-foreground font-display font-medium tracking-wide transition-all duration-300 hover:bg-muted/50 hover:-translate-y-0.5"

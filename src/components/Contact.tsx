@@ -77,9 +77,9 @@ const Contact = () => {
           className="flex gap-5 justify-center"
         >
           {[
-            { icon: Github, href: "https://github.com", label: "GitHub" },
-            { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-            { icon: Mail, href: "mailto:hello@example.com", label: "Email" },
+            { icon: Github, href: "https://github.com/bastos88", label: "GitHub" },
+            { icon: Linkedin, href: "https://www.linkedin.com/in/leoonardobastos", label: "LinkedIn" },
+            { icon: Mail, href: "mailto:bastos88leonardo@gmail.com", label: "Email" },
           ].map(({ icon: Icon, href, label }) => (
             <a
               key={label}
