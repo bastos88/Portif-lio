@@ -8,7 +8,7 @@
     "baseUrl": ".",
 
     "typeRoots": ["./types", "./node_modules/@types", "./node_modules"],
-    "types": ["vitest/globals"],
+    "types": [""],
 
     "paths": {
       "@/*": ["src/*"]
