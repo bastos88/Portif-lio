@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { ExternalLink } from "lucide-react";
 import travelgramImg from "@/assets/project-travelgram.png";
 import oldbladeImg from "@/assets/oldblade.png";
+import coffeeDeliveryImg from "@/assets/coffee-delivery.png";
 
 const projects = [
   {
@@ -20,6 +21,14 @@ const projects = [
     stack: ["HTML", "CSS", "JavaScript","JSON Server"],
     image: oldbladeImg,
     url: "https://old-blade.vercel.app/",
+  },
+  {
+    title: "Coffee Delivery",
+    description:
+      "Coffee ordering platform that allows users to choose, customize, and receive different types of coffee quickly and conveniently, wherever they are.",
+    stack: ["HTML", "CSS", "JavaScript","JSON Server", "TypeScript", "React", "Vite"],
+    image: coffeeDeliveryImg,
+    url: "https://coffee-delivery.vercel.app/",
   },
 ];
 
