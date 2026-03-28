@@ -28,7 +28,7 @@ const projects = [
       "Coffee ordering platform that allows users to choose, customize, and receive different types of coffee quickly and conveniently, wherever they are.",
     stack: ["HTML", "CSS", "JavaScript","JSON Server", "TypeScript", "React", "Vite"],
     image: coffeeDeliveryImg,
-    url: "https://coffee-delivery.vercel.app/",
+    url: "https://coffee-delivery-two-sigma.vercel.app/",
   },
 ];
 

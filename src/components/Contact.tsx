@@ -6,12 +6,37 @@ const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT || "https://formspree.io/f/YOURENDPOINT";
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Placeholder — form submission logic
-    console.log("Form submitted:", formData);
-    setFormData({ name: "", email: "", message: "" });
+    setStatus('submitting');
+
+    try {
+      const payload = new FormData();
+      payload.append('name', formData.name);
+      payload.append('email', formData.email);
+      payload.append('message', formData.message);
+
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        body: payload,
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+
+      if (res.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch (err) {
+      setStatus('error');
+    }
   };
 
   return (
@@ -38,6 +63,7 @@ const Contact = () => {
         >
           <div className="grid sm:grid-cols-2 gap-5">
             <input
+              name="name"
               type="text"
               placeholder="Name"
               value={formData.name}
@@ -46,6 +72,7 @@ const Contact = () => {
               required
             />
             <input
+              name="email"
               type="email"
               placeholder="Email"
               value={formData.email}
@@ -55,6 +82,7 @@ const Contact = () => {
             />
           </div>
           <textarea
+            name="message"
             placeholder="Your message"
             rows={5}
             value={formData.message}
@@ -64,10 +92,28 @@ const Contact = () => {
           />
           <button
             type="submit"
-            className="px-8 py-3.5 rounded-lg bg-primary text-primary-foreground font-display font-medium tracking-wide transition-all duration-300 hover:shadow-[0_0_30px_hsl(217_91%_60%/0.3)] hover:-translate-y-0.5"
+            disabled={status === 'submitting'}
+            className="px-8 py-3.5 rounded-lg bg-primary text-primary-foreground font-display font-medium tracking-wide transition-all duration-300 hover:shadow-[0_0_30px_hsl(217_91%_60%/0.3)] hover:-translate-y-0.5 disabled:opacity-60"
           >
-            Send Message
+            {status === 'submitting' ? 'Sending...' : 'Send Message'}
           </button>
+
+          {status === 'success' && (
+            <p className="text-sm text-green-500 mt-2" role="status">
+              Mensagem enviada! Obrigado — vou responder em breve.
+            </p>
+          )}
+          {status === 'error' && (
+            <p className="text-sm text-red-500 mt-2" role="alert">
+              Erro ao enviar a mensagem. Tente novamente mais tarde.
+            </p>
+          )}
+
+          {FORMSPREE_ENDPOINT.includes('YOURENDPOINT') && (
+            <p className="text-xs text-muted-foreground mt-2">
+              Tip: configure `VITE_FORMSPREE_ENDPOINT` com seu endpoint do Formspree.
+            </p>
+          )}
         </motion.form>
 
         <motion.div
